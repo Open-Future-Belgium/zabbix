@@ -3,11 +3,11 @@
 ### Make sure zabbix-sender package is installed ###
 
 ### Set Some Variables ###
-ZBX_DATA=/tmp/zabbix-sender-yum.in
+ZBX_DATA=/tmp/zabbix-sender-yum.data
 HOSTNAME=$(egrep ^Hostname= /etc/zabbix/zabbix_agentd.conf | cut -d = -f 2)
 ZBX_SERVER_IP=$(egrep ^ServerActive /etc/zabbix/zabbix_agentd.conf | cut -d = -f 2)
-release=$(cat "/etc/redhat-release")
-enforcing=$(getenforce)
+RELEASE=$(cat "/etc/redhat-release")
+ENFORCING=$(getenforce)
 
 ### Check if Zabbix-Sender is Installed ###
 if ! rpm -qa | grep -qw zabbix-sender; then
@@ -16,28 +16,28 @@ if ! rpm -qa | grep -qw zabbix-sender; then
 fi
 
 ### Check if SELinux is active ###
-if [[ "$enforcing" == "Enforcing" ]]
+if [[ "$ENFORCING" == "Enforcing" ]]
 then
-  selinux=1
+  SELINUX=1
 else
-  selinux=0
+  SELINUX=0
 fi
 
 ### Check for Security Updates ###
-Moderate=$(yum updateinfo list --sec-severity=Moderate | grep Moderate | wc -l)
-Important=$(yum updateinfo list --sec-severity=Important | grep Important | wc -l)
-Low=$(yum updateinfo list --sec-severity=Low | grep Low | wc -l)
-Critical=$(yum updateinfo list --sec-severity=Critical | grep Critical | wc -l)
+MODERATE=$(yum updateinfo list --sec-severity=Moderate | grep Moderate | wc -l)
+IMPORTANT=$(yum updateinfo list --sec-severity=Important | grep Important | wc -l)
+LOW=$(yum updateinfo list --sec-severity=Low | grep Low | wc -l)
+CRITICAL=$(yum updateinfo list --sec-severity=Critical | grep Critical | wc -l)
 
 
 ### Add data to file and send it to Zabbix Server ###
 echo -n > $ZBX_DATA
-echo "$HOSTNAME yum.moderate $Moderate" >> $ZBX_DATA
-echo "$HOSTNAME yum.important $Important" >> $ZBX_DATA
-echo "$HOSTNAME yum.low $Low" >> $ZBX_DATA
-echo "$HOSTNAME yum.critical $Critical" >> $ZBX_DATA
-echo "$HOSTNAME yum.release $release" >> $ZBX_DATA
-echo "$HOSTNAME yum.selinux $selinux" >> $ZBX_DATA
+echo "$HOSTNAME yum.moderate $MODERATE" >> $ZBX_DATA
+echo "$HOSTNAME yum.important $IMPORTANT" >> $ZBX_DATA
+echo "$HOSTNAME yum.low $LOW" >> $ZBX_DATA
+echo "$HOSTNAME yum.critical $CRITICAL" >> $ZBX_DATA
+echo "$HOSTNAME yum.release $RELEASE" >> $ZBX_DATA
+echo "$HOSTNAME yum.selinux $SELINUX" >> $ZBX_DATA
 
 zabbix_sender -z $ZBX_SERVER_IP -i $ZBX_DATA &> /dev/null
 
