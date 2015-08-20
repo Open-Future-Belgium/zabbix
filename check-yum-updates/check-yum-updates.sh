@@ -24,10 +24,10 @@ else
 fi
 
 ### Check for Security Updates ###
-MODERATE=$(yum updateinfo list --sec-severity=Moderate | grep Moderate | wc -l)
-IMPORTANT=$(yum updateinfo list --sec-severity=Important | grep Important | wc -l)
-LOW=$(yum updateinfo list --sec-severity=Low | grep Low | wc -l)
-CRITICAL=$(yum updateinfo list --sec-severity=Critical | grep Critical | wc -l)
+MODERATE=$(yum updateinfo list --sec-severity=Moderate/ | grep Moderate | wc -l)
+IMPORTANT=$(yum updateinfo list --sec-severity=Important/ | grep Important | wc -l)
+LOW=$(yum updateinfo list --sec-severity=Low | grep Low/ | wc -l)
+CRITICAL=$(yum updateinfo list --sec-severity=Critical/ | grep Critical | wc -l)
 
 
 ### Add data to file and send it to Zabbix Server ###
