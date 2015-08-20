@@ -311,7 +311,7 @@
             <url/>
             <status>0</status>
             <priority>4</priority>
-            <description/>
+            <description/>run yum update --security</description>
             <type>0</type>
             <dependencies/>
         </trigger>
@@ -321,7 +321,7 @@
             <url/>
             <status>0</status>
             <priority>3</priority>
-            <description/>
+            <description/>run yum update --security</description>
             <type>0</type>
             <dependencies/>
         </trigger>
@@ -331,7 +331,7 @@
             <url/>
             <status>0</status>
             <priority>2</priority>
-            <description/>
+            <description/>run yum update --security</description>
             <type>0</type>
             <dependencies/>
         </trigger>
