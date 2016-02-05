@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>2.0</version>
-    <date>2015-07-03T12:05:00Z</date>
+    <date>2016-02-05T07:49:21Z</date>
     <groups>
         <group>
-            <name>Extra Templates</name>
+            <name>OF Templates</name>
         </group>
     </groups>
     <templates>
         <template>
-            <template>Template YUM Check Updates</template>
-            <name>Template YUM Check Updates</name>
+            <template>OF Template YUM Check Updates</template>
+            <name>OF Template YUM Check Updates</name>
             <description/>
             <groups>
                 <group>
-                    <name>Extra Templates</name>
+                    <name>OF Templates</name>
                 </group>
             </groups>
             <applications>
@@ -30,7 +30,7 @@
             </applications>
             <items>
                 <item>
-                    <name>Critical Updates</name>
+                    <name>$1 Critical Updates</name>
                     <type>2</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
@@ -296,7 +296,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template YUM Check Updates:yum.selinux.last()}&lt;&gt;1</expression>
+            <expression>{OF Template YUM Check Updates:yum.selinux.last()}&lt;&gt;1</expression>
             <name>SELinux is NOT Active</name>
             <url/>
             <status>0</status>
@@ -306,32 +306,32 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template YUM Check Updates:yum.critical.last()}&gt;0</expression>
-            <name>{HOST.HOST} has Critical updates</name>
+            <expression>{OF Template YUM Check Updates:yum.critical.last()}&gt;0</expression>
+            <name>{HOST.NAME} has Critical updates</name>
             <url/>
             <status>0</status>
             <priority>4</priority>
-            <description/>run yum update --security</description>
+            <description>run yum update --security</description>
             <type>0</type>
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template YUM Check Updates:yum.important.last()}&gt;0</expression>
-            <name>{HOST.HOST} has Important updates</name>
+            <expression>{OF Template YUM Check Updates:yum.important.last()}&gt;0</expression>
+            <name>{HOST.NAME} has Important updates</name>
             <url/>
             <status>0</status>
             <priority>3</priority>
-            <description/>run yum update --security</description>
+            <description>run yum update --security</description>
             <type>0</type>
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template YUM Check Updates:yum.moderate.last()}&gt;0</expression>
-            <name>{HOST.HOST} has Moderate updates</name>
+            <expression>{OF Template YUM Check Updates:yum.moderate.last()}&gt;0</expression>
+            <name>{HOST.NAME} has Moderate updates</name>
             <url/>
             <status>0</status>
             <priority>2</priority>
-            <description/>run yum update --security</description>
+            <description>run yum update --security</description>
             <type>0</type>
             <dependencies/>
         </trigger>
