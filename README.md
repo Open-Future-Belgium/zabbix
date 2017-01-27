@@ -1,9 +1,14 @@
 Zabbix Scripts
 ==============
+Updated 27/1/2017
+
+Check Read Only
+----------------
+
+* LLD Script to check RO status of filesystems
 
 Check Yum Updates
 -----------------
-Updated 24/8/2015
 
 * check-yum-updates: works for rhel6 / rhel7
 * copy the script in cron.daily
