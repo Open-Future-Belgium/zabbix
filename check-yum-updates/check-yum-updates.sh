@@ -39,8 +39,13 @@ elif grep -q -i "release 7" /etc/redhat-release ; then
   IMPORTANT=$(yum updateinfo list --sec-severity=Important | grep Important | wc -l)
   LOW=$(yum updateinfo list --sec-severity=Low | grep Low | wc -l)
   CRITICAL=$(yum updateinfo list --sec-severity=Critical | grep Critical | wc -l)
+elif grep -q -i "release 8" /etc/redhat-release ; then
+  MODERATE=$(yum updateinfo list --sec-severity=Moderate | grep Moderate | wc -l)
+  IMPORTANT=$(yum updateinfo list --sec-severity=Important | grep Important | wc -l)
+  LOW=$(yum updateinfo list --sec-severity=Low | grep Low | wc -l)
+  CRITICAL=$(yum updateinfo list --sec-severity=Critical | grep Critical | wc -l)
 else
-  echo "Running neither RHEL6.x nor RHEL 7.x !"
+  echo "Running neither RHEL6.x/7.x/8.x !"
 fi
 
 
