@@ -5,6 +5,10 @@
 ### Set Some Variables ###
 ZBX_DATA=/tmp/zabbix-sender-yum.data
 HOSTNAME=$(egrep ^Hostname= /etc/zabbix/zabbix_agentd.conf | cut -d = -f 2)
+if [[ "$HOSTNAME" == "" ]]
+then
+  HOSTNAME=$(hostname)
+fi
 ZBX_SERVER_IP=$(egrep ^ServerActive /etc/zabbix/zabbix_agentd.conf | cut -d = -f 2)
 RELEASE=$(cat "/etc/redhat-release")
 ENFORCING=$(getenforce)
